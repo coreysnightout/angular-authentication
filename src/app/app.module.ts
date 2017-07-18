@@ -11,6 +11,8 @@ import { masterFirebaseConfig } from './api-keys';
 import { AuthenticationService } from './authentication/authentication.service';
 import { PublicComponent } from './public/public.component';
 import { PrivateComponent } from './private/private.component';
+import { routing } from './app.routing';
+import { AuthGuard } from './auth-guard/auth-guard.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -33,8 +35,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    routing
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
